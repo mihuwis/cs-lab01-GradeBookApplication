@@ -12,5 +12,20 @@ namespace GradeBook.GradeBooks
         {
             base.Type = Enums.GradeBookType.Ranked;
         }
+
+        public override void CalculateStatistics()
+        {
+            base.CalculateStatistics();
+        }
+
+        public override void CalculateStudentStatistics(string name)
+        {
+            base.CalculateStudentStatistics(name);
+        }
+
+        public override char GetLetterGrade(double averageGrade)
+        {
+            return base.GetLetterGrade(averageGrade);
+        }
     }
 }
