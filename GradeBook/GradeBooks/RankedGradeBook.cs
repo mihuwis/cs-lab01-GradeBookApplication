@@ -15,12 +15,26 @@ namespace GradeBook.GradeBooks
 
         public override void CalculateStatistics()
         {
-            base.CalculateStatistics();
+            if (base.Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+            }
+            else
+            {
+                base.CalculateStatistics();
+            }
         }
 
         public override void CalculateStudentStatistics(string name)
         {
-            base.CalculateStudentStatistics(name);
+            if (base.Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+            }
+            else
+            {
+                base.CalculateStudentStatistics(name);
+            }
         }
 
         public override char GetLetterGrade(double averageGrade)
