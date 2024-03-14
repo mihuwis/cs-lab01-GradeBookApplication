@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +40,32 @@ namespace GradeBook.GradeBooks
 
         public override char GetLetterGrade(double averageGrade)
         {
-            return base.GetLetterGrade(averageGrade);
+            if (base.Students.Count < 5)
+            {
+                throw new InvalidOperationException("Not enough student in the list");
+            }
+
+            List<Double> listOfGrades = base.Students
+                .OrderByDescending(student => student.AverageGrade)
+                .Select(student => student.AverageGrade)
+                .ToList();
+
+            int gradeGroup = (int) Math.Ceiling(listOfGrades.Count * 0.2);
+
+            if (listOfGrades[gradeGroup - 1] <= averageGrade)
+            {
+                return 'A';
+            } else if (listOfGrades[gradeGroup * 2] <= averageGrade)
+            {
+                return 'B';
+            } else if (listOfGrades[gradeGroup * 3] <= averageGrade)
+            {
+                return 'C';
+            } else if (listOfGrades[gradeGroup * 4] <= averageGrade)
+            {
+                return 'D';
+            }
+            return 'F';
         }
     }
 }
