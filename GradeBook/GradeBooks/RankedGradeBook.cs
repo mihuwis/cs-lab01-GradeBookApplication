@@ -9,7 +9,7 @@ namespace GradeBook.GradeBooks
 {
     public class RankedGradeBook:BaseGradeBook
     {
-        public RankedGradeBook(string name) : base(name)
+        public RankedGradeBook(string name, bool isWeighted) : base(name, isWeighted)
         {
             base.Type = Enums.GradeBookType.Ranked;
         }
@@ -55,13 +55,13 @@ namespace GradeBook.GradeBooks
             if (listOfGrades[gradeGroup - 1] <= averageGrade)
             {
                 return 'A';
-            } else if (listOfGrades[gradeGroup * 2] <= averageGrade)
+            } else if (listOfGrades[(gradeGroup * 2) - 1 ] <= averageGrade)
             {
                 return 'B';
-            } else if (listOfGrades[gradeGroup * 3] <= averageGrade)
+            } else if (listOfGrades[(gradeGroup * 3) -1 ] <= averageGrade)
             {
                 return 'C';
-            } else if (listOfGrades[gradeGroup * 4] <= averageGrade)
+            } else if (listOfGrades[(gradeGroup * 4) - 1] <= averageGrade)
             {
                 return 'D';
             }
